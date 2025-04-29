@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col items-center py-6">
-      <header className="mb-12 w-dvw min-h-[50dvh] flex justify-evenly items-center bg-emerald-50 shadow-lg p-8">
+    <div className="min-h-screen bg-zinc-50/50 text-zinc-800 flex flex-col items-center py-6 overflow-x-hidden">
+      <header className="mb-12 w-dvw min-h-[50dvh] flex justify-evenly items-center bg-emerald-50 shadow-lg p-8 my-10">
         <h1 className="text-4xl font-bold mb-4">Scotophobia</h1>
         <div className="text-lg w-1/3">
           <p>
@@ -86,7 +86,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="mt-16 text-sm text-gray-500 text-center">
+      <footer className="mt-16 text-sm text-zinc-500 text-center">
         <p>© 2025 Scotophobia Awareness. All rights reserved.</p>
         <p className="mt-2 text-xs">
           <span className="opacity-50">
