@@ -45,6 +45,45 @@ function App() {
             professional help is often beneficial.
           </p>
         </section>
+
+        <section className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4">Causes of Scotophobia</h2>
+          <p className="leading-relaxed">
+            Scotophobia can stem from traumatic experiences, such as being left
+            alone in the dark as a child. It may also be linked to an overactive
+            imagination or a fear of the unknown. In some cases, it can be a
+            learned behavior from observing others with similar fears.
+          </p>
+        </section>
+
+        <section className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4">Interesting Facts</h2>
+          <ul className="list-disc list-inside space-y-2">
+            <li>
+              The word "scotophobia" comes from the Greek word "skotos," meaning
+              darkness.
+            </li>
+            <li>
+              Scotophobia is more common in children but can persist into
+              adulthood.
+            </li>
+            <li>
+              Many people with scotophobia find comfort in nightlights or
+              sleeping with a light on.
+            </li>
+            <li>It is one of the most common specific phobias worldwide.</li>
+          </ul>
+        </section>
+
+        <section className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4">When to Seek Help</h2>
+          <p className="leading-relaxed">
+            If scotophobia significantly impacts your daily life, relationships,
+            or ability to function, it may be time to seek professional help.
+            Therapists can provide strategies to manage and overcome the fear,
+            such as cognitive-behavioral therapy (CBT) or exposure therapy.
+          </p>
+        </section>
       </main>
 
       <footer className="mt-16 text-sm text-gray-500 text-center">
