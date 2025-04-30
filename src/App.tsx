@@ -11,7 +11,7 @@ function App() {
               The fear of darkness, also known as nyctophobia, is a common
               phobia that affects people of all ages.
             </p>
-            <button className="mt-6 bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-6 rounded shadow-md transition">
+            <button className="mt-6 bg-emerald-500 cursor-pointer hover:bg-emerald-600 text-white py-2 px-6 rounded shadow-md transition">
               <a href="#what-is-scotophobia">Learn more</a>
             </button>
           </div>
