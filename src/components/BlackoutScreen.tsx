@@ -28,13 +28,31 @@ function BlackoutScreen() {
     });
   };
 
+  const flashlightSize = 150;
+
+  const flashlightGradient = `radial-gradient(
+          circle 600px at ${mousePosition.x} ${mousePosition.y},
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.1)  ${flashlightSize - 30}px,
+          rgba(0, 0, 0, 0.05) ${flashlightSize - 20}px,
+          rgba(0, 0, 0, 0.2)  ${flashlightSize}px,
+          rgba(0, 0, 0, 0.97) ${flashlightSize + 15}px,
+          /*
+          rgba(0, 0, 0, 0.98) ${flashlightSize + 45}px,
+          rgba(0, 0, 0, 0.9)  ${flashlightSize + 50}px,
+          rgba(0, 0, 0, 0.9)  ${flashlightSize + 52}px,
+          rgba(0, 0, 0, 0.98) ${flashlightSize + 57}px,
+          */
+          rgba(0, 0, 0, 1) 100%
+        )`;
+
   return (
     <div
       onMouseMove={handleMouseMove}
       style={{
         opacity: shown ? 1 : 0,
-        WebkitMaskImage: `radial-gradient(circle 250px at ${mousePosition.x} ${mousePosition.y}, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 1) 100%)`,
-        maskImage: `radial-gradient(circle 250px at ${mousePosition.x} ${mousePosition.y}, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 1) 100%)`,
+        WebkitMaskImage: flashlightGradient,
+        maskImage: flashlightGradient,
       }}
       className={
         "transition-opacity duration-1000 ease-in-out -backdrop-hue-rotate-30 backdrop-brightness-2 backdrop-blur-xs. backdrop-contrast-90 backdrop-grayscale-25 z-50 fixed inset-0"
