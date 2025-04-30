@@ -6,7 +6,7 @@ function App() {
       <div className="min-h-screen bg-zinc-50/50 text-zinc-800 flex flex-col items-center py-6 overflow-x-hidden">
         <header className="mb-12 w-dvw min-h-[50dvh] flex flex-col justify-evenly items-center bg-emerald-50 shadow-lg p-8 my-10 md:flex-row">
           <h1 className="text-4xl font-bold mb-4">Scotophobia</h1>
-          <div className="text-lg w-1/3">
+          <div className="text-lg md:w-1/3">
             <p>
               The fear of darkness, also known as nyctophobia, is a common
               phobia that affects people of all ages.
