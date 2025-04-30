@@ -17,6 +17,7 @@ function BlackoutScreen() {
   const flashlightSize = 150;
   const smoothingFactor = 0.4;
 
+  // Blackout & flashlight
   useEffect(() => {
     let flashlightActivationTimeout: number | undefined = undefined;
 
@@ -34,6 +35,7 @@ function BlackoutScreen() {
     };
   }, []);
 
+  // Mouse position
   useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
       targetPosition.current = {
@@ -49,6 +51,7 @@ function BlackoutScreen() {
     };
   }, []);
 
+  // Smooth movement
   useEffect(() => {
     const smoothMovement = () => {
       currentPosition.current.x +=
