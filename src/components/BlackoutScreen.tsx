@@ -1,9 +1,22 @@
 import { useEffect, useState, useRef } from "react";
 
+const setCookie = (name: string, value: string, minutes: number) => {
+  const expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString();
+  document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+};
+
+const getCookie = (name: string) => {
+  const cookies = document.cookie.split("; ");
+  const cookie = cookies.find((c) => c.startsWith(`${name}=`));
+  return cookie ? cookie.split("=")[1] : null;
+};
+
 function BlackoutScreen() {
   const [shown, setShown] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: "50%", y: "50%" });
   const [flashlightActive, setFlashlightActive] = useState(false);
+  const [transitionBlackout, setTransitionBlackout] = useState(false);
+
+  const [mousePosition, setMousePosition] = useState({ x: "50%", y: "50%" });
 
   const targetPosition = useRef({
     x: window.innerWidth / 2,
@@ -19,10 +32,24 @@ function BlackoutScreen() {
 
   // Blackout & flashlight
   useEffect(() => {
+    const savedBlackoutState = getCookie("blackoutActive");
+    console.log("Saved blackout state:", savedBlackoutState);
+
+    if (savedBlackoutState === "true") {
+      setShown(true);
+      setFlashlightActive(true);
+
+      return;
+    }
+
+    setTransitionBlackout(true);
+
     let flashlightActivationTimeout: number | undefined = undefined;
 
     const blackoutTimeout = setTimeout(() => {
       setShown(true);
+
+      setCookie("blackoutActive", "true", 0.5);
 
       flashlightActivationTimeout = setTimeout(() => {
         setFlashlightActive(true);
@@ -94,7 +121,10 @@ function BlackoutScreen() {
         maskImage: flashlightGradient,
       }}
       className={
-        "transition-opacity pointer-events-none duration-1000 ease-in-out -backdrop-hue-rotate-30 backdrop-brightness-2 backdrop-contrast-90 backdrop-grayscale-25 z-50 fixed inset-0"
+        "pointer-events-none -backdrop-hue-rotate-30 backdrop-brightness-2 backdrop-contrast-90 backdrop-grayscale-25 z-50 fixed inset-0" +
+        (transitionBlackout
+          ? " transition-opacity duration-1000 ease-in-out"
+          : "")
       }
     />
   );
