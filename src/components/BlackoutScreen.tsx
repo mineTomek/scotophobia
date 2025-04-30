@@ -53,8 +53,8 @@ function BlackoutScreen() {
 
       flashlightActivationTimeout = setTimeout(() => {
         setFlashlightActive(true);
-      }, (Math.random() * 2 + 1) * 1000); // 1-3
-    }, (Math.random() * 7 + 3) * 1000); // 3-10
+      }, (Math.random() * 1 + 1) * 1000); // 1-2
+    }, (Math.random() * 5 + 2) * 1000); // 2-7
 
     return () => {
       clearTimeout(blackoutTimeout);
