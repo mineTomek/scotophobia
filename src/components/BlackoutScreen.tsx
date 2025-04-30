@@ -25,26 +25,34 @@ function BlackoutScreen() {
     return () => clearTimeout(blackoutTimeout);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    targetPosition.current = {
-      x: Math.max(
-        Math.min(
-          (e.clientX - window.innerWidth / 2) * mousePosScale +
-            window.innerWidth / 2,
-          window.innerWidth + flashlightSize * posBarrierFactor
+  useEffect(() => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      targetPosition.current = {
+        x: Math.max(
+          Math.min(
+            (e.clientX - window.innerWidth / 2) * mousePosScale +
+              window.innerWidth / 2,
+            window.innerWidth + flashlightSize * posBarrierFactor
+          ),
+          -flashlightSize * posBarrierFactor
         ),
-        -flashlightSize * posBarrierFactor
-      ),
-      y: Math.max(
-        Math.min(
-          (e.clientY - window.innerHeight / 2) * mousePosScale +
-            window.innerHeight / 2,
-          window.innerHeight + flashlightSize * posBarrierFactor
+        y: Math.max(
+          Math.min(
+            (e.clientY - window.innerHeight / 2) * mousePosScale +
+              window.innerHeight / 2,
+            window.innerHeight + flashlightSize * posBarrierFactor
+          ),
+          -flashlightSize * posBarrierFactor
         ),
-        -flashlightSize * posBarrierFactor
-      ),
+      };
     };
-  };
+
+    window.addEventListener("mousemove", handleGlobalMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleGlobalMouseMove);
+    };
+  }, []);
 
   useEffect(() => {
     const smoothMovement = () => {
@@ -80,14 +88,13 @@ function BlackoutScreen() {
 
   return (
     <div
-      onMouseMove={handleMouseMove}
       style={{
         opacity: shown ? 1 : 0,
         WebkitMaskImage: flashlightGradient,
         maskImage: flashlightGradient,
       }}
       className={
-        "transition-opacity duration-1000 ease-in-out -backdrop-hue-rotate-30 backdrop-brightness-2 backdrop-contrast-90 backdrop-grayscale-25 z-50 fixed inset-0"
+        "transition-opacity pointer-events-none duration-1000 ease-in-out -backdrop-hue-rotate-30 backdrop-brightness-2 backdrop-contrast-90 backdrop-grayscale-25 z-50 fixed inset-0"
       }
     />
   );
