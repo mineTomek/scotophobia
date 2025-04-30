@@ -13,9 +13,7 @@ function BlackoutScreen() {
   });
 
   const flashlightSize = 150;
-  const mousePosScale = 1.7;
   const smoothingFactor = 0.4;
-  const posBarrierFactor = 0.6;
 
   useEffect(() => {
     const blackoutTimeout = setTimeout(() => {
@@ -28,22 +26,8 @@ function BlackoutScreen() {
   useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
       targetPosition.current = {
-        x: Math.max(
-          Math.min(
-            (e.clientX - window.innerWidth / 2) * mousePosScale +
-              window.innerWidth / 2,
-            window.innerWidth + flashlightSize * posBarrierFactor
-          ),
-          -flashlightSize * posBarrierFactor
-        ),
-        y: Math.max(
-          Math.min(
-            (e.clientY - window.innerHeight / 2) * mousePosScale +
-              window.innerHeight / 2,
-            window.innerHeight + flashlightSize * posBarrierFactor
-          ),
-          -flashlightSize * posBarrierFactor
-        ),
+        x: e.clientX,
+        y: e.clientY,
       };
     };
 
