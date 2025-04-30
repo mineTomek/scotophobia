@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from "react";
 function BlackoutScreen() {
   const [shown, setShown] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: "50%", y: "50%" });
+  const [flashlightActive, setFlashlightActive] = useState(false);
+
   const targetPosition = useRef({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
@@ -16,11 +18,20 @@ function BlackoutScreen() {
   const smoothingFactor = 0.4;
 
   useEffect(() => {
+    let flashlightActivationTimeout: number | undefined = undefined;
+
     const blackoutTimeout = setTimeout(() => {
       setShown(true);
-    }, (Math.random() * 10 + 10) * 1000);
 
-    return () => clearTimeout(blackoutTimeout);
+      flashlightActivationTimeout = setTimeout(() => {
+        setFlashlightActive(true);
+      }, (Math.random() * 2 + 1) * 1000); // 1-3
+    }, (Math.random() * 7 + 3) * 1000); // 3-10
+
+    return () => {
+      clearTimeout(blackoutTimeout);
+      clearTimeout(flashlightActivationTimeout);
+    };
   }, []);
 
   useEffect(() => {
@@ -61,7 +72,9 @@ function BlackoutScreen() {
   }, []);
 
   const flashlightGradient = `radial-gradient(
-          circle 600px at ${mousePosition.x} ${mousePosition.y},
+          circle 600px at ${
+            flashlightActive ? mousePosition.x : -flashlightSize
+          } ${flashlightActive ? mousePosition.y : -flashlightSize},
           rgba(0, 0, 0, 0) 0%,
           rgba(0, 0, 0, 0.1)  ${flashlightSize - 30}px,
           rgba(0, 0, 0, 0.05) ${flashlightSize - 20}px,
