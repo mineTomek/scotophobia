@@ -64,14 +64,24 @@ function BlackoutScreen() {
 
   // Mouse position
   useEffect(() => {
+    const moveTarget = (x: number, y: number) => {
+      targetPosition.current = { x, y };
+    };
+
     const handleGlobalMouseMove = (e: MouseEvent) => {
-      targetPosition.current = {
-        x: e.clientX,
-        y: e.clientY,
-      };
+      moveTarget(e.clientX, e.clientY);
+    };
+
+    const handleGlobalTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+
+      if (touch) {
+        moveTarget(touch.clientX, touch.clientY);
+      }
     };
 
     window.addEventListener("mousemove", handleGlobalMouseMove);
+    window.addEventListener("touchmove", handleGlobalTouchMove);
 
     return () => {
       window.removeEventListener("mousemove", handleGlobalMouseMove);
