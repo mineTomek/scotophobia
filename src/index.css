@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
 html {
-  @apply scroll-smooth;
+  @apply scroll-smooth accent-emerald-300 selection:bg-emerald-300 selection:text-emerald-900;
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply selection:text-emerald-600;
+}
+
+@layer components {
+  .title {
+    @apply relative;
+  }
+  .title::before {
+    @apply content-[""] block w-full h-4 bg-emerald-500/20 absolute bottom-0 translate-y-1/3 rotate-2 -translate-x-2;
   }
 }

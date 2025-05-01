@@ -5,19 +5,19 @@ function App() {
     <>
       <div className="min-h-screen bg-zinc-50/50 text-zinc-800 flex flex-col items-center py-6 overflow-x-hidden">
         <header className="mb-12 w-dvw min-h-[50dvh] flex flex-col justify-evenly items-center bg-emerald-50 shadow-lg p-8 my-10 md:flex-row">
-          <h1 className="text-4xl font-bold mb-4">Scotophobia</h1>
+          <h1 className="text-4xl font-bold mb-4 title">Scotophobia</h1>
           <div className="text-lg md:w-1/3 flex flex-col items-center text-center">
             <p>
               The fear of darkness, also known as nyctophobia, is a common
               phobia that affects people of all ages.
             </p>
-            <button className="mt-6 bg-emerald-500 cursor-pointer hover:bg-emerald-600 text-white py-2 px-6 rounded shadow-md transition">
+            <button className="mt-6 bg-emerald-500 cursor-pointer hover:bg-emerald-600 selection:text-emerald-100 text-white py-2 px-6 transition rounded-full shadow-md">
               <a href="#what-is-scotophobia">Learn more</a>
             </button>
           </div>
         </header>
 
-        <main className="max-w-4xl w-full space-y-12">
+        <main className="max-w-4xl w-full space-y-12 mx-4">
           <section
             id="what-is-scotophobia"
             className="bg-white p-6 rounded-lg shadow-md"
